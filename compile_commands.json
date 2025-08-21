@@ -1,0 +1,37 @@
+[
+{
+  "directory": "/home/edgeboard/ACCM2025/RUN_ACCM2025_icar",
+  "command": "/usr/bin/c++  -I/usr/include/glib-2.0 -I/usr/lib/aarch64-linux-gnu/glib-2.0/include -I/usr/local/include/libserial -I/usr/local/include/ppnc -I/usr/local/include/onnx -isystem /usr/local/include/opencv -O3 -Wall -mcpu=native -flto -pthread -Wno-sign-compare -Wno-unused-variable -Wno-unused-but-set-variable -std=gnu++1z -o CMakeFiles/icar.dir/main.cpp.o -c /home/edgeboard/ACCM2025/RUN_ACCM2025_icar/main.cpp",
+  "file": "/home/edgeboard/ACCM2025/RUN_ACCM2025_icar/main.cpp"
+},
+{
+  "directory": "/home/edgeboard/ACCM2025/RUN_ACCM2025_icar",
+  "command": "/usr/bin/c++  -I/usr/include/glib-2.0 -I/usr/lib/aarch64-linux-gnu/glib-2.0/include -I/usr/local/include/libserial -I/usr/local/include/ppnc -I/usr/local/include/onnx -isystem /usr/local/include/opencv -O3 -Wall -mcpu=native -flto -pthread -Wno-sign-compare -Wno-unused-variable -Wno-unused-but-set-variable -std=gnu++1z -o CMakeFiles/icar.dir/capture/capture.cpp.o -c /home/edgeboard/ACCM2025/RUN_ACCM2025_icar/capture/capture.cpp",
+  "file": "/home/edgeboard/ACCM2025/RUN_ACCM2025_icar/capture/capture.cpp"
+},
+{
+  "directory": "/home/edgeboard/ACCM2025/RUN_ACCM2025_icar",
+  "command": "/usr/bin/c++  -I/usr/include/glib-2.0 -I/usr/lib/aarch64-linux-gnu/glib-2.0/include -I/usr/local/include/libserial -I/usr/local/include/ppnc -I/usr/local/include/onnx -isystem /usr/local/include/opencv -O3 -Wall -mcpu=native -flto -pthread -Wno-sign-compare -Wno-unused-variable -Wno-unused-but-set-variable -std=gnu++1z -o CMakeFiles/icar.dir/thread/thread.cpp.o -c /home/edgeboard/ACCM2025/RUN_ACCM2025_icar/thread/thread.cpp",
+  "file": "/home/edgeboard/ACCM2025/RUN_ACCM2025_icar/thread/thread.cpp"
+},
+{
+  "directory": "/home/edgeboard/ACCM2025/RUN_ACCM2025_icar",
+  "command": "/usr/bin/c++  -I/usr/include/glib-2.0 -I/usr/lib/aarch64-linux-gnu/glib-2.0/include -I/usr/local/include/libserial -I/usr/local/include/ppnc -I/usr/local/include/onnx -isystem /usr/local/include/opencv -O3 -Wall -mcpu=native -flto -pthread -Wno-sign-compare -Wno-unused-variable -Wno-unused-but-set-variable -std=gnu++1z -o CMakeFiles/icar.dir/track/imgprocess/imgprocess.cpp.o -c /home/edgeboard/ACCM2025/RUN_ACCM2025_icar/track/imgprocess/imgprocess.cpp",
+  "file": "/home/edgeboard/ACCM2025/RUN_ACCM2025_icar/track/imgprocess/imgprocess.cpp"
+},
+{
+  "directory": "/home/edgeboard/ACCM2025/RUN_ACCM2025_icar",
+  "command": "/usr/bin/c++  -I/usr/include/glib-2.0 -I/usr/lib/aarch64-linux-gnu/glib-2.0/include -I/usr/local/include/libserial -I/usr/local/include/ppnc -I/usr/local/include/onnx -isystem /usr/local/include/opencv -O3 -Wall -mcpu=native -flto -pthread -Wno-sign-compare -Wno-unused-variable -Wno-unused-but-set-variable -std=gnu++1z -o CMakeFiles/icar.dir/track/standard/standard.cpp.o -c /home/edgeboard/ACCM2025/RUN_ACCM2025_icar/track/standard/standard.cpp",
+  "file": "/home/edgeboard/ACCM2025/RUN_ACCM2025_icar/track/standard/standard.cpp"
+},
+{
+  "directory": "/home/edgeboard/ACCM2025/RUN_ACCM2025_icar",
+  "command": "/usr/bin/c++  -I/usr/include/glib-2.0 -I/usr/lib/aarch64-linux-gnu/glib-2.0/include -I/usr/local/include/libserial -I/usr/local/include/ppnc -I/usr/local/include/onnx -isystem /usr/local/include/opencv -O3 -Wall -mcpu=native -flto -pthread -Wno-sign-compare -Wno-unused-variable -Wno-unused-but-set-variable -std=gnu++1z -o CMakeFiles/icar.dir/track/special/catering.cpp.o -c /home/edgeboard/ACCM2025/RUN_ACCM2025_icar/track/special/catering.cpp",
+  "file": "/home/edgeboard/ACCM2025/RUN_ACCM2025_icar/track/special/catering.cpp"
+},
+{
+  "directory": "/home/edgeboard/ACCM2025/RUN_ACCM2025_icar",
+  "command": "/usr/bin/c++  -I/usr/include/glib-2.0 -I/usr/lib/aarch64-linux-gnu/glib-2.0/include -I/usr/local/include/libserial -I/usr/local/include/ppnc -I/usr/local/include/onnx -isystem /usr/local/include/opencv -O3 -Wall -mcpu=native -flto -pthread -Wno-sign-compare -Wno-unused-variable -Wno-unused-but-set-variable -std=gnu++1z -o CMakeFiles/icar.dir/track/special/obstacle.cpp.o -c /home/edgeboard/ACCM2025/RUN_ACCM2025_icar/track/special/obstacle.cpp",
+  "file": "/home/edgeboard/ACCM2025/RUN_ACCM2025_icar/track/special/obstacle.cpp"
+}
+]

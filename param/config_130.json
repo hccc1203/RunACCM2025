@@ -1,0 +1,82 @@
+{
+    "jsonPth": "../param/config_130.json",
+    "wifi_start":1,
+    "ttyUsb": 0,
+    "en_show":false,
+    "en_AI_show":true,
+
+    "speedLow":120,
+    "speedHigh":140,
+    "speedBridge": 70,
+    "speedRing": 110,
+    "speedCross": 120,
+    "speedDown": 60,
+    "aim_distance_far" : 0.6,
+    "aim_distance_near" : 0.35,
+    "aim_distance_ring" : 0.6,
+    "steering_p_k" : 2,
+    "ring_entering_p_k" :-0.0018,
+    "ring_p_k" : -0.0018,
+    "steering_p" :0.9,
+    "steering_d" : 0.8,
+    "curve_p":1.2,
+    "curve_d":0.8,
+    "ring_d":1.8,
+
+    "exposure": 0.0220,
+    "temprature":4000,
+    "brightness":0.6,
+
+    "debug": false,
+    "saveImg": true,
+    "enAI": true,   
+
+
+    "elem_order":[5,6,6,6,6,5,6],
+    "speed_order":[120,120,120,120,120,120,120,120,120,120,120,120,120,120],
+    "aim_dis_n_order":[0.65,0.65,0.65,0.65,0.65,0.65,0.65,0.65,0.65,0.65,0.65,0.65,0.65,0.65],
+    "aim_angle_p_order":[0.9,0.9,1,0.9,1,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9],
+    "aim_angle_d_order":[0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8],
+    "obstacle_order_index":[0,1,2],
+
+    "ring": true,
+    "cross": true,
+
+    "video": "/home/edgeboard/ACCM2025/cross.mp4",
+    "model": "../model/yolov3_mobilenet_v1",
+    "score": 0.1,
+
+
+    "CATERING_STOP_TIMESTAMP":25,
+    "CHARGING_LEFT_FIRST_GOIN_TIME" : 32,
+    "CHARGING_LEFT_SECOND_GOIN_TIME":32,
+    "CHARGING_RIGHT_FIRST_GOIN_TIME":8,
+    "CHARGING_RIGHT_SECOND_GOIN_TIME":32,
+    "CHARGING_LEFT_FIRST_OUT_TIME_ADD":8,
+    "CHARGING_LEFT_SECOND_OUT_TIME_ADD":2,
+    "CHARGING_RIGHT_FIRST_OUT_TIME_ADD":30,
+    "CHARGING_RIGHT_SECOND_OUT_TIME_ADD":2,
+    "CHARGING_GOIN_AIM_SPEED": 90,
+
+    "STOP_EXPECT_Y":120,
+
+    "LAYBY_SHIFT_LEFT":10,
+    "LAYBY_SHIFT_RIGHT":10,
+    "LAYBY_PARKING_TIMER":50,
+    "LAYBY_AIM_SPEED":35,
+
+    "OBSTACLE_width_conical":50,
+    "OBSTACLE_width_pedestrian":50, 
+    "OBSTACLE_width_block":50,
+    "block_aim_speed": 90,
+    "cone_aim_speed": 50,
+
+
+
+
+    "record": [
+        {
+            "#order": " 顺序定义 1.汉堡 2.左虚线停车 4.障碍 5.圆环 6.十字 7.桥 0.终止位 8.左1充电 9.左2充电 10.右1充电 11.右2充电 12.右虚线停车"
+        }
+    ]
+}

@@ -1,0 +1,5 @@
+{
+    "mode": "normal",
+    "model_dir": "../model/yolov3_mobilenet_v1/",
+    "model_file": "nms.tar.so"
+}

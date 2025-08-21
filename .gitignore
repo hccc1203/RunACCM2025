@@ -1,0 +1,7 @@
+build/
+!build/delete_img.bash
+CMakeFiles/
+image/
+model/
+cmake_install.cmake
+Makefile

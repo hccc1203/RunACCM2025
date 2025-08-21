@@ -1,0 +1,139 @@
+{
+    "jsonPth": "../param/config_110.json",
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    "wifi_start":0,
+    "ttyUsb": 1,
+    "en_show":false,
+    "en_AI_show":false,
+
+    "speedLow": 0,
+    "speedHigh": 0,
+    "speedBridge": 0,
+    "speedRing": 0,
+    "speedCross": 0,
+    "speedDown": 0,
+
+    "aim_distance_far" : 0.75,
+    "aim_distance_near" : 0.7,
+    "aim_distance_ring" : 0.6,
+    "ring_entering_p_k" :-0.0004,
+    "ring_p_k" : -0.0004,
+    "steering_p" :0.9,
+    "steering_d" : 0.0,
+    "curve_p":1.1,
+    "curve_d":0,
+    "ring_d":1.0,
+
+    "exposure": 0.022,
+    "temprature":4600,
+    "brightness":0.4,
+
+    "debug": false,
+    "saveImg": false,
+    "enAI": false,
+
+
+    "elem_order":[0],
+    "speed_order":[0],
+    "aim_dis_n_order":[0],
+    "aim_angle_p_order":[0],
+    "aim_angle_d_order":[0],
+    "obstacle_order_index":[0,1,2],
+
+    "ring": true,
+    "cross": true,
+    
+    "video": "/home/edgeboard/ACCM2025/cross.mp4",
+    "model": "../model/yolov3_mobilenet_v1",
+    "score": 0.7,
+    "CATERING_STOP_TIMESTAMP":15,
+
+    "CHARGING_LEFT_FIRST_GOIN_TIME" : 32,
+    "CHARGING_LEFT_SECOND_GOIN_TIME":32,
+    "CHARGING_RIGHT_FIRST_GOIN_TIME":32,
+    "CHARGING_RIGHT_SECOND_GOIN_TIME":32,
+    "CHARGING_LEFT_FIRST_OUT_TIME_ADD":2,
+    "CHARGING_LEFT_SECOND_OUT_TIME_ADD":2,
+    "CHARGING_RIGHT_FIRST_OUT_TIME_ADD":2,
+    "CHARGING_RIGHT_SECOND_OUT_TIME_ADD":2,
+    "CHARGING_GOIN_AIM_SPEED": 90,
+    
+    "STOP_EXPECT_Y":150,
+
+    "LAYBY_SHIFT_LEFT":10,
+    "LAYBY_SHIFT_RIGHT":20,
+    "LAYBY_PARKING_TIMER":70,
+    "LAYBY_AIM_SPEED":45,
+
+    "OBSTACLE_width_conical":110,
+    "OBSTACLE_width_pedestrian":110, 
+    "OBSTACLE_width_block":50,
+    "block_aim_speed": 90,
+    "cone_aim_speed": 50,
+    "cone_p":0.9,
+    "cone_d":0.5,
+    "pe_p":0.9,
+    "pe_d":0.5,
+    "block_p":0.9,
+    "block_d":0.5,
+    "record": [
+        {
+            "#order": " 顺序定义 1.汉堡 2.虚线停车 3.充电 4.障碍 5.圆环 6.十字 7.桥 0.终止位"
+        }
+    ]
+}
