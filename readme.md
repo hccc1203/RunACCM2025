@@ -8,7 +8,7 @@
 [决赛视频](https://www.bilibili.com/video/BV1rqegzqEai/?spm_id_from=333.1387.homepage.video_card.click)
 
 ## 特别鸣谢
-##### 长安大学
+##### 长安大学 没有霹雳猫猫队
 ##### 天津大学      天有四时队
 ##### 上海海事大学  赤霄驭风队
 ##### 华南理工大学  华工龙泉队
