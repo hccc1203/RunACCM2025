@@ -7,6 +7,8 @@
 祝愿车赛越办越好 大家都能取得理想的成绩！
 [决赛视频](https://www.bilibili.com/video/BV1rqegzqEai/?spm_id_from=333.1387.homepage.video_card.click)
 
+开源交流QQ群431268082
+
 ## 特别鸣谢
 ##### 长安大学 没有霹雳猫猫队
 ##### 天津大学      天有四时队
