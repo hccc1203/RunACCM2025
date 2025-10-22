@@ -69,7 +69,7 @@ void Cross::Cross_Run(std::vector<POINT> &t_pointsEdgeLeft, std::vector<POINT> &
         L_right_found = false;
         no_line_counter = 0;
     }
-
+    // 此代码为开源代码，如购买得到请投诉卖家
     if(flag_cross == Cross_Begin)
     {
 
@@ -269,7 +269,7 @@ void Cross::cross_find_farline(cv::Mat &img, bool is_L_left_found, bool is_L_rig
     nms_angle(far_a_t_pointsEdgeRight, far_a_t_pointsEdgeRight_size,
               far_n_a_t_pointsEdgeRight, 22);
     far_n_a_t_pointsEdgeRight_size = far_n_a_t_pointsEdgeRight.size();
-
+    // 此代码为开源代码，如购买得到请投诉卖家
     far_t_pointsEdgeLeft.clear();
     far_t_pointsEdgeRight.clear();
     far_t_pointsEdgeLeft_size = 0;
@@ -322,7 +322,7 @@ void Cross::calculate_s_i(int start, int end, std::vector<POINT> &pointsEdge, fl
         x_average = (float)(xsum / num);
         y_average = (float)(ysum / num);
     }
-
+    // 此代码为开源代码，如购买得到请投诉卖家
     /*计算斜率*/
     slope_rate = Slope_Calculate(start, end, pointsEdge); // 斜率
     intercept = y_average - slope_rate * x_average;       // 截距

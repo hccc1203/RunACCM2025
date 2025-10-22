@@ -76,7 +76,7 @@ void Ring::Ring_Check(Mat &imgBinary, bool is_left_straight, bool is_right_strai
         return ;
     }
     ring_find_line(imgBinary, 200);
-
+    // 此代码为开源代码，如购买得到请投诉卖家
     if (flag_ring == Ring_None)
     {
         left_no_size = 0;
@@ -217,7 +217,7 @@ void Ring::Ring_Run(std::vector<POINT> &t_pointsEdgeLeft, std::vector<POINT> &t_
                     int t_L_pointLeft_id, int t_L_pointRight_id,
                     cv::Mat imgBinary)
 {
-
+    // 此代码为开源代码，如购买得到请投诉卖家
     if (flag_ring == Left_Ring_pre_Entering)
     {
         printf("L_preEntering_2\n");
@@ -377,6 +377,7 @@ void Ring::Ring_Run(std::vector<POINT> &t_pointsEdgeLeft, std::vector<POINT> &t_
         t_pointsEdgeLeft_size = 0;
         t_pointsEdgeRight_size = 0;
         t_pointsEdgeRight.clear();
+        // 此代码为开源代码，如购买得到请投诉卖家
         if(s_b_t_far_exiting_edge_size > 10)
         {
             if(s_b_t_far_exiting_edge[s_b_t_far_exiting_edge_size - 5].y - s_b_t_far_exiting_edge[0].y <= 0 && s_b_t_far_exiting_edge[s_b_t_far_exiting_edge_size - 5].x - s_b_t_far_exiting_edge[0].x < 0)
@@ -472,7 +473,7 @@ void Ring::Ring_Run(std::vector<POINT> &t_pointsEdgeLeft, std::vector<POINT> &t_
     }
     else if (flag_ring == Right_Ring_Exiting)
     {
-
+        // 此代码为开源代码，如购买得到请投诉卖家
         if(is_L_left_found)
         {
             general.Reverse_transf(exiting_x0,exiting_y0,t_pointsEdgeLeft[t_L_pointLeft_id].x,t_pointsEdgeLeft[t_L_pointLeft_id].y);

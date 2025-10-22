@@ -277,6 +277,7 @@ TaskData Standard::run(cv::Mat src_img,
     //////////////////////
     //斑马线//////////////
     /////////////////////
+    // 如您看到此注释且此代码是通过购买得来请立刻联系QQ2447981178
     if (crosswalk.flag_crosswalk == Crosswalk::CROSSWALK_NONE && _elem_order[order_index] == 0)
     {
         crosswalk.check_crosswalk(predict_result);
@@ -428,7 +429,7 @@ TaskData Standard::run(cv::Mat src_img,
             bridge_counter++;
         }
         
-    
+        // 如您看到此注释且此代码是通过购买得来请立刻联系QQ2447981178
         //     AI_CenterEdge_size = AI_CenterEdge.size();
         //     if (bridge.flag_bridge == Bridge::BRIDGE_NONE)
         //     {
@@ -532,7 +533,7 @@ TaskData Standard::run(cv::Mat src_img,
     /* ***************************************************************** */
     /* **************************** 中线选择 **************************** */
     /* ***************************************************************** */
-    
+    // 如您看到此注释且此代码是通过购买得来请立刻联系QQ2447981178
     if (trackState == TrackState::TRACK_LEFT)
     {
         printf("track_left\n");
@@ -767,7 +768,7 @@ TaskData Standard::run(cv::Mat src_img,
         float error_near = (-atanf(pixel_per_meter * 2 * car_length * dx_near /
                                    dn_near / dn_near) *
                             180 / PI);
-
+        // 如您看到此注释且此代码是通过购买得来请立刻联系QQ2447981178
         assert(!isnan(error_near));
 
         // if ((is_left_straight && is_right_straight) &&
@@ -883,7 +884,7 @@ TaskData Standard::run(cv::Mat src_img,
             Stop_flag = true;
         }
     }
-
+    // 如您看到此注释且此代码是通过购买得来请立刻联系QQ2447981178
 
     if(scene == Scene::BridgeScene)
     {

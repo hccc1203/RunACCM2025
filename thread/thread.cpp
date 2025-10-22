@@ -68,7 +68,7 @@ bool AIConsumer(Factory<TaskData> & AI_task_data, std::vector<PredictResult> & p
 		lock.lock();
 		predict_result = detection->results;
         Mat img = dst.img.clone();
-
+        // 此代码为开源代码
         if(flag)
         {
             exit(0);
@@ -102,7 +102,7 @@ bool AIConsumer(Factory<TaskData> & AI_task_data, std::vector<PredictResult> & p
 }
 
 bool consumer(Factory<TaskData> & task_data, Factory<DebugData> & debug_data, std::vector<PredictResult> & predict_result, Config & config, shared_ptr<Uart> & uart) {
-	
+	// 此代码为开源代码
     Standard standard(config);
     bool stop2_flag = false;
     int stop_counter = 0;
@@ -147,7 +147,8 @@ bool consumer(Factory<TaskData> & task_data, Factory<DebugData> & debug_data, st
         debug.pwm = dst.pwm;
         debug.speed = dst.speed;
 		debug_data.produce(debug);
-        
+
+
 
         // std::cout << standard.element_string[standard.elem_state] << std::endl;
 	    
@@ -162,6 +163,7 @@ bool consumer(Factory<TaskData> & task_data, Factory<DebugData> & debug_data, st
 
 void drawBox(Mat &img, std::vector<PredictResult> results)
 {
+    // 此代码为开源代码
     for (int i = 0; i < results.size(); i++)
     {
         PredictResult result = results[i];
