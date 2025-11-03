@@ -9,6 +9,16 @@
 [决赛视频](https://www.bilibili.com/video/BV1rqegzqEai/?spm_id_from=333.1387.homepage.video_card.click)  
 开源交流QQ群431268082  
 
+## 使用教程
+```C
+// 进入文件夹后
+mkdir build
+cd build
+cmake ..
+sudo make -j3
+./icar
+```
+
 ## 目录结构描述
 
 ```C
