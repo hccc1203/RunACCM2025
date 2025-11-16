@@ -24,11 +24,6 @@ include_directories(${PPNC_INCLUDE_DIRS})
 link_directories(${PPNC_LIBRARY_DIRS})
 
 
-# 相机标定
-set(CAL_PROJECT_NAME "camera_test")
-set(CAL_PROJECT_SOURCES ${PROJECT_SOURCE_DIR}/camera_test/camera_test.cpp)
-add_executable(${CAL_PROJECT_NAME} ${CAL_PROJECT_SOURCES})
-target_link_libraries(${CAL_PROJECT_NAME}  ${OpenCV_LIBS})
 # find onnx
 pkg_search_module(ONNX REQUIRED onnx)
 include_directories(${ONNX_INCLUDE_DIRS})
