@@ -12,7 +12,6 @@
 
 using namespace cv;
 
-extern Uart uart;
 bool flag = false;
 float pitch_angle;
 General general;
@@ -29,13 +28,12 @@ void callbackSignal(int signum)
 	cout << "====System Exit!!!  -->  CarStopping! " << signum << endl;
 }
 
-bool producer(Factory<TaskData> & task_data, Factory<TaskData> & AI_task_data, Config & config) {
-	Capture capture(config);
+bool producer(Factory<TaskData> & task_data, Factory<TaskData> & AI_task_data, std::shared_ptr<ICamera> &camera) {
     
 
 	while (true) {
 		TaskData src;
-		if (!capture.getImage(src.img)) 
+		if (!camera->getImage(src.img)) 
         {
             printf("noimage");
             continue;
@@ -101,7 +99,7 @@ bool AIConsumer(Factory<TaskData> & AI_task_data, std::vector<PredictResult> & p
 	return true;	
 }
 
-bool consumer(Factory<TaskData> & task_data, Factory<DebugData> & debug_data, std::vector<PredictResult> & predict_result, Config & config, shared_ptr<Uart> & uart) {
+bool consumer(Factory<TaskData> & task_data, Factory<DebugData> & debug_data, std::vector<PredictResult> & predict_result, Config & config, shared_ptr<IUart> & uart) {
 	// 此代码为开源代码
     Standard standard(config);
     bool stop2_flag = false;
@@ -194,7 +192,7 @@ bool debugDataConsumer(Factory<DebugData> & debug_data) {
 	return true;
 }
 
-bool uartReceive(std::shared_ptr<Uart> & uart)
+bool uartReceive(std::shared_ptr<IUart> & uart)
 {
     while(true){
         // uart->receiveCheck();

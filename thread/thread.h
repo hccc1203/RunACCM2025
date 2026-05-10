@@ -14,10 +14,10 @@
 
 #include "../include/detection.hpp"
 #include "../param/param.hpp"
+#include "../include/hw_interface.hpp"
 #include "../capture/capture.h"
 #include "../track/standard/standard.h"
 // #include "../port/canPort.hpp"
-#include "../include/uart.hpp"
 #include "../track/special/catering.h"
 
 struct DebugData{
@@ -72,11 +72,11 @@ bool Factory<T>::consume(T &product) {
 }
 // ------------------------------------ //
 
-bool producer(Factory<TaskData> & task_data, Factory<TaskData> & AI_task_data, Config & config);
+bool producer(Factory<TaskData> & task_data, Factory<TaskData> & AI_task_data, std::shared_ptr<ICamera> &camera);
 bool AIConsumer(Factory<TaskData> & task_data, std::vector<PredictResult> & predict_result, Config & config);
-bool consumer(Factory<TaskData> & task_data, Factory<DebugData> & debug_data, std::vector<PredictResult> & predict_result, Config & config, std::shared_ptr<Uart> & uart);
+bool consumer(Factory<TaskData> & task_data, Factory<DebugData> & debug_data, std::vector<PredictResult> & predict_result, Config & config, std::shared_ptr<IUart> & uart);
 void drawBox(Mat &img, std::vector<PredictResult> results);
 bool debugDataConsumer(Factory<DebugData> & debug_data);
-bool uartReceive(std::shared_ptr<Uart> & uart);
+bool uartReceive(std::shared_ptr<IUart> & uart);
 
 cv::Scalar getCvcolor(int index);

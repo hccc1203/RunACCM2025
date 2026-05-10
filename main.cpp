@@ -64,8 +64,6 @@
 
 
 
-Uart uart = Uart("/dev/ttyUSB0"); // 初始化串口驱动
-
 void Set_Config(Config &config)
 {
     Config cfg_pth;
@@ -118,17 +116,17 @@ int main()
     Config config;
     Set_Config(config);
 
-    shared_ptr<Uart> uart;
+    shared_ptr<IUart> uart;
     if (config.ttyUsb == 0)
-        uart = make_shared<Uart>("/dev/ttyUSB0"); // 初始化串口驱动
+        uart = createUart("/dev/ttyUSB0"); // 初始化串口驱动
     else if (config.ttyUsb == 1)
-        uart = make_shared<Uart>("/dev/ttyUSB1");
+        uart = createUart("/dev/ttyUSB1");
     else if (config.ttyUsb == 2)
-        uart = make_shared<Uart>("/dev/ttyUSB2");
+        uart = createUart("/dev/ttyUSB2");
     else if (config.ttyUsb == 3)
-        uart = make_shared<Uart>("/dev/ttyUSB3");
+        uart = createUart("/dev/ttyUSB3");
     else if (config.ttyUsb == 4)
-        uart = make_shared<Uart>("/dev/ttyUSB4");
+        uart = createUart("/dev/ttyUSB4");
     int ret = uart->open();
     if (ret != 0)
     {
@@ -151,7 +149,8 @@ int main()
     }
     std::vector<PredictResult> predict_result;
 
-    std::thread task_producer(&producer, std::ref(task_factory), std::ref(AI_task_factory), std::ref(config));
+    auto camera = createCamera(config);
+    std::thread task_producer(&producer, std::ref(task_factory), std::ref(AI_task_factory), std::ref(camera));
 
 	std::thread AI_producer(&AIConsumer, std::ref(AI_task_factory), std::ref(predict_result), std::ref(config));
 
