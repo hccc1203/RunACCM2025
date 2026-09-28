@@ -74,7 +74,7 @@ Standard::Standard(Config config)
     obstacle.OBSTACLE_width_conical = config.OBSTACLE_width_conical;
     obstacle.OBSTACLE_width_pedestrian = config.OBSTACLE_width_pedestrian;
 
-    fst.open("/home/edgeboard/RUN_ACCM2025_icar/track/standard/data.txt",ios::out);
+    fst.open(PATH_TRACK_DATA, ios::out);
     fst << "";
     fst.close();
     
@@ -1193,7 +1193,7 @@ TaskData Standard::run(cv::Mat src_img,
         // videoWriter << imgT;
     }
 
-    fst.open("/home/edgeboard/ACCM2025/RUN_ACCM2025_icar/track/standard/data.txt",ios::out|ios::app);
+    fst.open(PATH_TRACK_DATA, ios::out | ios::app);
     fst << aim_angle_filter << "," << aim_angle_pwm << endl;
     fst.close();
     beep_flag = (scene != Scene::NormalScene);

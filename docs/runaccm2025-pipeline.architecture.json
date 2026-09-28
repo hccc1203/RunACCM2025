@@ -1,0 +1,476 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "RunACCM2025 智能车上位机",
+    "locale": "zh-CN",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1300,
+      470
+    ],
+    "repository": {
+      "url": "https://github.com/hccc1203/RunACCM2025",
+      "revision": "f460bf2c051e849670b4779a99b4ee2bc5f8465f"
+    },
+    "views": [
+      {
+        "id": "control-path",
+        "label": "主控制链路",
+        "focus": [
+          "camera",
+          "producer",
+          "task_queue",
+          "consumer",
+          "standard",
+          "uart",
+          "mcu"
+        ],
+        "note": "一帧图像从相机到舵机 PWM / 目标速度下发下位机的完整路径。"
+      },
+      {
+        "id": "ai-branch",
+        "label": "AI 推理旁路",
+        "focus": [
+          "producer",
+          "ai_queue",
+          "ai_worker",
+          "standard"
+        ],
+        "note": "同一帧另投一路队列做目标检测，结果以共享向量回喂决策线程。"
+      },
+      {
+        "id": "scene-machine",
+        "label": "场景状态机",
+        "focus": [
+          "standard",
+          "elements",
+          "config"
+        ],
+        "note": "Standard::run 按配置顺序表调度各元素模块，模块回写边线与场景状态。"
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "camera",
+      "type": "external",
+      "label": "USB 摄像头",
+      "sublabel": "MJPG 320×240",
+      "tag": "/dev/v4l/by-id",
+      "sources": [
+        {
+          "path": "capture/capture.cpp",
+          "line": 11,
+          "label": "Capture 构造与参数设置"
+        }
+      ],
+      "pos": [
+        40,
+        202
+      ],
+      "size": [
+        170,
+        80
+      ]
+    },
+    {
+      "id": "producer",
+      "type": "backend",
+      "label": "producer 采集线程",
+      "sublabel": "Capture::getImage 取帧",
+      "sources": [
+        {
+          "path": "thread/thread.cpp",
+          "line": 32,
+          "label": "producer"
+        }
+      ],
+      "pos": [
+        240,
+        202
+      ],
+      "size": [
+        170,
+        80
+      ]
+    },
+    {
+      "id": "task_queue",
+      "type": "messagebus",
+      "label": "Factory<TaskData>",
+      "sublabel": "巡线队列 · deque 深度 3",
+      "tag": "满则丢最旧帧",
+      "sources": [
+        {
+          "path": "thread/thread.h",
+          "line": 32,
+          "label": "Factory 模板"
+        }
+      ],
+      "pos": [
+        440,
+        202
+      ],
+      "size": [
+        170,
+        80
+      ]
+    },
+    {
+      "id": "consumer",
+      "type": "backend",
+      "label": "consumer 决策线程",
+      "sublabel": "取帧 · 调用巡线 · 下发",
+      "sources": [
+        {
+          "path": "thread/thread.cpp",
+          "line": 104,
+          "label": "consumer"
+        }
+      ],
+      "pos": [
+        640,
+        202
+      ],
+      "size": [
+        170,
+        80
+      ]
+    },
+    {
+      "id": "standard",
+      "type": "backend",
+      "label": "Standard::run",
+      "sublabel": "巡线 + 场景状态机",
+      "tag": "scene / trackState",
+      "sources": [
+        {
+          "path": "track/standard/standard.cpp",
+          "line": 108,
+          "label": "run 主流程"
+        }
+      ],
+      "pos": [
+        840,
+        202
+      ],
+      "size": [
+        170,
+        80
+      ]
+    },
+    {
+      "id": "uart",
+      "type": "backend",
+      "label": "Uart::carControl",
+      "sublabel": "115200 8N1 · 12 字节帧",
+      "tag": "帧头 0x42 + 累加校验",
+      "sources": [
+        {
+          "path": "include/uart.hpp",
+          "line": 352,
+          "label": "carControl"
+        }
+      ],
+      "pos": [
+        1060,
+        202
+      ],
+      "size": [
+        170,
+        80
+      ]
+    },
+    {
+      "id": "mcu",
+      "type": "external",
+      "label": "下位机主控",
+      "sublabel": "电机调速 + 舵机 PWM",
+      "pos": [
+        1060,
+        364
+      ],
+      "size": [
+        170,
+        80
+      ]
+    },
+    {
+      "id": "ai_queue",
+      "type": "messagebus",
+      "label": "Factory<TaskData>",
+      "sublabel": "AI 队列 · deque 深度 3",
+      "pos": [
+        440,
+        40
+      ],
+      "size": [
+        170,
+        80
+      ]
+    },
+    {
+      "id": "ai_worker",
+      "type": "backend",
+      "label": "AIConsumer 推理线程",
+      "sublabel": "PPNC NNA + ONNX 后处理",
+      "sources": [
+        {
+          "path": "thread/thread.cpp",
+          "line": 59,
+          "label": "AIConsumer"
+        },
+        {
+          "path": "include/detection.hpp",
+          "line": 124,
+          "label": "Detection::inference"
+        }
+      ],
+      "pos": [
+        840,
+        40
+      ],
+      "size": [
+        170,
+        80
+      ]
+    },
+    {
+      "id": "config",
+      "type": "database",
+      "label": "param/config_*.json",
+      "sublabel": "速度 / PD / 元素顺序表",
+      "tag": "config_choose.json 选档",
+      "sources": [
+        {
+          "path": "main.cpp",
+          "line": 69,
+          "label": "Set_Config"
+        },
+        {
+          "path": "param/param.hpp",
+          "line": 5,
+          "label": "struct Config"
+        }
+      ],
+      "pos": [
+        240,
+        364
+      ],
+      "size": [
+        170,
+        80
+      ]
+    },
+    {
+      "id": "elements",
+      "type": "backend",
+      "label": "元素模块",
+      "sublabel": "圆环 / 十字 / 坡道 / 障碍 / 汉堡 / 临停 / 充电 / 斑马线",
+      "sources": [
+        {
+          "path": "track/basic/ring.cpp",
+          "label": "Ring 检测与处理"
+        },
+        {
+          "path": "track/special/charging.cpp",
+          "label": "Charging 进出库"
+        }
+      ],
+      "pos": [
+        660,
+        364
+      ],
+      "size": [
+        350,
+        80
+      ]
+    },
+    {
+      "id": "debug",
+      "type": "frontend",
+      "label": "debugDataConsumer",
+      "sublabel": "DebugData → cv::imshow",
+      "tag": "en_show 使能",
+      "sources": [
+        {
+          "path": "thread/thread.cpp",
+          "line": 184,
+          "label": "debugDataConsumer"
+        }
+      ],
+      "pos": [
+        440,
+        364
+      ],
+      "size": [
+        170,
+        80
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "上位机 EdgeBoard 进程 ./icar",
+      "wraps": [
+        "producer",
+        "task_queue",
+        "consumer",
+        "standard",
+        "uart",
+        "ai_queue",
+        "ai_worker",
+        "config",
+        "elements",
+        "debug"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "grab",
+      "from": "camera",
+      "to": "producer",
+      "label": "MJPG 帧",
+      "variant": "emphasis",
+      "labelDy": -34
+    },
+    {
+      "id": "enqueue-track",
+      "from": "producer",
+      "to": "task_queue",
+      "label": "帧 + 时间戳",
+      "variant": "emphasis",
+      "labelDy": -34
+    },
+    {
+      "id": "dequeue-track",
+      "from": "task_queue",
+      "to": "consumer",
+      "label": "consume 阻塞取帧",
+      "variant": "emphasis",
+      "labelDy": -34
+    },
+    {
+      "id": "invoke-run",
+      "from": "consumer",
+      "to": "standard",
+      "label": "run(img, predict_result)",
+      "variant": "emphasis",
+      "labelDy": -34
+    },
+    {
+      "id": "control-out",
+      "from": "standard",
+      "to": "uart",
+      "label": "pwm / speed / buzzer",
+      "variant": "emphasis",
+      "labelDy": -34
+    },
+    {
+      "id": "serial-frame",
+      "from": "uart",
+      "to": "mcu",
+      "label": "串口下发",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelDy": 24
+    },
+    {
+      "id": "enqueue-ai",
+      "from": "producer",
+      "to": "ai_queue",
+      "label": "同帧副本",
+      "variant": "dashed",
+      "fromSide": "top",
+      "toSide": "left"
+    },
+    {
+      "id": "dequeue-ai",
+      "from": "ai_queue",
+      "to": "ai_worker"
+    },
+    {
+      "id": "predict-share",
+      "from": "ai_worker",
+      "to": "standard",
+      "label": "predict_result 共享向量",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelDy": 44
+    },
+    {
+      "id": "param-inject",
+      "from": "config",
+      "to": "producer",
+      "label": "Config 参数注入",
+      "variant": "dashed",
+      "fromSide": "top",
+      "toSide": "bottom",
+      "labelDy": -44
+    },
+    {
+      "id": "element-dispatch",
+      "from": "standard",
+      "to": "elements",
+      "label": "按 elem_order 调度并回写边线",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelDy": 44
+    },
+    {
+      "id": "debug-out",
+      "from": "consumer",
+      "to": "debug",
+      "label": "DebugData",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelDy": 44
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "三线程流水线",
+      "items": [
+        "producer 取一帧后同帧投递巡线与 AI 两条 Factory 队列",
+        "AIConsumer 用 PPNC NNA 跑主干、ONNX 跑 NMS，写共享 predict_result",
+        "consumer 调 Standard::run 得 PWM 与速度，经 Uart 下发",
+        "队列满即丢最旧帧（pop_front），保时延不保帧序"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "巡线与中线生成",
+      "items": [
+        "OTSU 二值化 → floodFill 只留车道连通域 → 最长白列定起点",
+        "迷宫法爬边线 → 逆透视 → 滤波 → 等距重采样 → 角度 + 非极大值抑制找拐点",
+        "单边中线按法向外推半车道宽；双边取四点做三阶贝塞尔",
+        "trackState 默认取点数更多的一侧"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "场景状态机",
+      "items": [
+        "仅 NormalScene 做元素检测，且受 elem_order[order_index] 放行",
+        "元素状态清回 NONE 后 scene 复位且 order_index++",
+        "元素模块就地改写 t_pointsEdge 或 AI_CenterEdge"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "控制量计算与下发",
+      "items": [
+        "按 aim_distance_near / far 各取一预瞄点算 error_near / error_far",
+        "aim_angle 按场景加权；常规路段只用 error_near",
+        "PD 输出 ×30 从 PWMSERVOMID 3840 反叠，夹紧 3000~4700",
+        "中线无效沿用上一帧；CROSSWALK_STOP 置 Stop_flag 停车"
+      ]
+    }
+  ]
+}

@@ -64,8 +64,6 @@
 
 
 
-Uart uart = Uart("/dev/ttyUSB0"); // 初始化串口驱动
-
 void Set_Config(Config &config)
 {
     Config cfg_pth;
@@ -118,17 +116,15 @@ int main()
     Config config;
     Set_Config(config);
 
-    shared_ptr<Uart> uart;
-    if (config.ttyUsb == 0)
-        uart = make_shared<Uart>("/dev/ttyUSB0"); // 初始化串口驱动
-    else if (config.ttyUsb == 1)
-        uart = make_shared<Uart>("/dev/ttyUSB1");
-    else if (config.ttyUsb == 2)
-        uart = make_shared<Uart>("/dev/ttyUSB2");
-    else if (config.ttyUsb == 3)
-        uart = make_shared<Uart>("/dev/ttyUSB3");
-    else if (config.ttyUsb == 4)
-        uart = make_shared<Uart>("/dev/ttyUSB4");
+    // 初始化串口驱动：设备号由 config.ttyUsb 指定
+    if (config.ttyUsb < 0 || config.ttyUsb > 4)
+    {
+        printf("[Error] Invalid ttyUsb: %d (expect 0~4)\n", config.ttyUsb);
+        return -1;
+    }
+    shared_ptr<Uart> uart =
+        make_shared<Uart>("/dev/ttyUSB" + std::to_string(config.ttyUsb));
+
     int ret = uart->open();
     if (ret != 0)
     {
@@ -172,8 +168,5 @@ int main()
     // uart_receive.join();
 
 
-    while(1);
-
-    
     return 0;
 }

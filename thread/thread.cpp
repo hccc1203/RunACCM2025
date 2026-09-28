@@ -12,7 +12,6 @@
 
 using namespace cv;
 
-extern Uart uart;
 bool flag = false;
 float pitch_angle;
 General general;

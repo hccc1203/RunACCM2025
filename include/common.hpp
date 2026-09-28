@@ -56,23 +56,11 @@ using namespace cv;
 #define LABEL_SCHOOL 9     // AI标签：学校
 
 
-/**
- * @brief 场景类型（路况）
- *
- */
-enum Scene
-{
-    NormalScene = 0, // 基础赛道
-    CrossScene,      // 十字道路
-    RingScene,       // 环岛道路
-    BridgeScene,     // 坡道区
-    ObstacleScene,   // 障碍区
-    CateringScene,   // 快餐店
-    LaybyScene,      // 临时停车区
-    ParkingScene,    // 停车区
-    StopScene        // 停车（结束）
+// 运行期输出路径：均相对于工作目录（程序在 build/ 下启动），便于换机器部署
+#define PATH_IMAGE_DIR "../image/"                   // 存图目录
+#define PATH_TRACK_DATA "../track/standard/data.txt" // 巡线偏差记录
 
-};
+// 场景类型（路况）的唯一定义在 Standard::Scene，见 track/standard/standard.h
 
 
 

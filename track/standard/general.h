@@ -6,6 +6,7 @@
 #pragma once
 
 #include <opencv2/opencv.hpp>
+#include <filesystem>
 #include "../../include/common.hpp"
 class General{
 public:
@@ -73,7 +74,14 @@ public:
         static int counter = 0;
         counter += delta;
         printf("image:%d\n", counter);
-        string img_path = "/home/edgeboard/Run_ACCM_2025Demo/image/";
+        string img_path = PATH_IMAGE_DIR;
+        // 目录不存在时 imwrite 会静默失败，首次调用时补建
+        static bool dir_ready = false;
+        if (!dir_ready)
+        {
+            std::filesystem::create_directories(img_path);
+            dir_ready = true;
+        }
         name = img_path + to_string(counter) + prefix + ".jpg";
         cv::imwrite(name, image);
     }

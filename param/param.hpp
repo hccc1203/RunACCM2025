@@ -50,8 +50,8 @@ struct Config
 
 
     // string video = "../res/samples/output_video.mp4";          // 视频路径
-    std::string video = "/home/edgeboard/ACCM2025/output.mp4"; // 视频路径
-    std::string model = "/home/edgeboard/ACCM2025/icar/model/yolov3_mobilenet_v1";
+    std::string video = "../output.mp4";                     // 视频路径（相对工作目录）
+    std::string model = "../model/yolov3_mobilenet_v1";      // 模型目录（相对工作目录）
     float score = 0.4;
 
     
